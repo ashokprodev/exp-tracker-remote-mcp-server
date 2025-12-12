@@ -15,7 +15,7 @@ print(f"Database path: {DB_PATH}")
 
 mcp = FastMCP("ExpenseTracker")
 
-async def init_db():  # Keep as sync for initialization
+def init_db():  # Keep as sync for initialization
     try:
         # Use synchronous sqlite3 just for initialization
         import sqlite3
@@ -40,7 +40,7 @@ async def init_db():  # Keep as sync for initialization
         raise
 
 # Initialize database synchronously at module load
-asyncio.run(init_db())
+init_db()
 
 @mcp.tool()
 async def add_expense(date, amount, category, subcategory="", note=""):  # Changed: added async
